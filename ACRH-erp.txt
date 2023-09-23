@@ -1,0 +1,175 @@
+Git Repository
+Laravel project Setup
+User Create
+Role Create
+Role Assign
+Permission create
+Permission Assign
+Authentication
+User
+    -> id 
+    -> first_name
+    -> last_name
+    -> email 
+    -> password
+    -> phone_no 
+    -> user_status 
+    -> is_active 
+
+Role 
+    -> id 
+    -> role_name 
+    -> is_active
+
+User_role 
+    -> id 
+    -> role_id  
+    -> user_id
+
+Permission 
+    -> id 
+    -> permission_name 
+    -> permission_code (unique) 
+    -> url 
+    -> request_method
+
+Role_permission
+    -> id 
+    -> role_id
+    -> permission_id 
+
+
+2. Create Role 
+    -> API URL: /api/erp/roles 
+    -> Method: POST 
+    -> Request Body: 
+        {
+            "role_name": "Role_1"
+        }
+    -> Response Body: 
+        {
+            "responseCode": "10000S",
+            "responseMessage": "Operation went smoothly."
+        }
+
+3. User Role Assignment 
+    -> API URL: /api/erp/users/{user_id}/roles 
+    -> Method: POST 
+    -> Request Body:
+        {
+            "user_id": "mostak@gmail.com",
+            "user_roles": [
+                1, 2, 3, 4
+            ]
+        }
+    -> Response Body: 
+        {
+            "responseCode": "10000S",
+            "responseMessage": "Operation went smoothly."
+        }
+4. Permission Create 
+    -> API URL: /api/erp/permissions
+    -> Method: POST 
+    -> Request Body:
+        [
+            {
+                "permission_name": "Product Create",
+                "permission_code":"I101",
+                "url": "/api/erp/products"
+                "request_method": "POST"
+            },
+            {
+                "permission_name": "Product Create",
+                "permission_code":"I101",
+                "url": "/api/erp/products"
+                "request_method": "POST"
+            },
+            {
+                "permission_name": "Product Create",
+                "permission_code":"I101",
+                "url": "/api/erp/products"
+                "request_method": "POST"
+            },
+            {
+                "permission_name": "Product Create",
+                "permission_code":"I101",
+                "url": "/api/erp/products"
+                "request_method": "POST"
+            },
+        ]
+    -> Response Body: 
+        {
+            "responseCode": "10000S",
+            "responseMessage": "Operation went smoothly."
+        }
+
+5. Permission Assignment 
+    -> API URL: /api/erp/roles/{role_id}/permissions 
+    -> Method: POST 
+    -> Request Body:
+        {
+            "role_id": 1,
+            "user_roles": [
+                I101, I102, I103, I104
+            ]
+        }
+    -> Response Body: 
+        {
+            "responseCode": "10000S",
+            "responseMessage": "Operation went smoothly."
+        }
+
+6. Create User 
+    -> API URL: /api/erp/users
+    -> Method: POST 
+    -> Request Body:
+        {
+            "first_name": "Mostak",
+            "last_name": "Ahmed",
+            "email": "mostak@gmail.com",
+            "phone_no": "018756656565"
+        }
+    -> Response Body: 
+        {
+            "responseCode": "10000S",
+            "responseMessage": "Operation went smoothly."
+        }
+
+1. Authenticate User  
+    -> API URL: /api/erp/users/authentication
+    -> Method: POST
+    -> Request Body 
+        {
+            "email":"mostak@gmail.com",
+            "password": "123456"
+        } 
+    -> Response Body 
+        {
+            "token":"eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJzdWIiOiAiMTIzNDU2Nzg5MCIsICJuYW1lIjogIkpvaG4gRG9lIiwgImlhdCI6IDE1MTYyMzkwMjJ9.Gb3XiR1mK2b4hFqdETmS2JOwNYkW4JmLZPmC-qRgu5s",
+            "name": "Mostak Ahmed",
+            "email": "mostak@gmail.com",
+            "user_status: 1,
+            "permissions": [
+                {
+                    "permission_code": "I101",
+                    "url":"/api/erp/products",
+                    "request_method": "POST"
+                },
+                {
+                    "permission_code": "I102",
+                    "permission_url":"/api/erp/products/{product_id}"
+                    "request_method": "GET"
+                },
+                {
+                    "permission_code": "I103",
+                    "permission_url":"/api/erp/products/{product_id}"
+                    "request_method": "PUT/PATCH"
+                },
+                {
+                    "permission_code": "I104",
+                    "permission_url":"/api/erp/products/{product_id}"
+                    "request_method": "DELETE"
+                }
+            ]
+        }
+
