@@ -173,3 +173,13 @@ Role_permission
             ]
         }
 
+
+User to User_Role: One-to-Many relationship. A user can have multiple roles, but a role can be associated with multiple users.
+
+Role to User_Role: One-to-Many relationship. A role can be associated with multiple users through the User_Role table.
+
+User_Role to Role: Many-to-One relationship. Multiple user roles can be associated with a single role.
+
+User_Role to User: Many-to-One relationship. Multiple user roles can be associated with a single user.
+
+Permission to Role: Many-to-Many relationship. A role can have multiple permissions, and a permission can be associated with multiple roles. This relationship is typically implemented using an additional table (not mentioned in your provided schema) often called Role_Permission or similar, which would have two foreign keys, one pointing to role_id in the Role table, and the other pointing to permission_id in the Permission table.

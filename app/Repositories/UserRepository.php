@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository{
     public function createUser(Request $request)
@@ -11,10 +12,10 @@ class UserRepository{
             'first_name'=>$request->first_name,
             'last_name'=>$request->last_name,
             'email'=>$request->email,
-            'password'=>$request->password,
+            'password'=>Hash::make($request->password ?? 12341234),
             'phone_no'=>$request->phone_no,
-            'user_status'=>$request->user_status ?? 'IN_PROGRESS',
-            'is_active'=>$request->is_active ?? false,
+            'user_status'=>'Active',
+            'is_active'=>false,
 
         ];
         // dd($data);

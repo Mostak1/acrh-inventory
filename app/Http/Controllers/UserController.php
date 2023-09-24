@@ -16,9 +16,10 @@ class UserController extends Controller
     public function index()
     {
        $user= User::get();
+    //    dd($user);
        return response()->json([
-        'result' => $user,
-        "responseMessage"=>"Data Don't Insert.Try again Please"
+        'user' => $user,
+       
     ]);
     }
 

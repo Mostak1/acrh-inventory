@@ -25,6 +25,6 @@ class UserService
 
     public function deleteCategory(User $user)
     {
-        // Implement the logic for deleting a category, including file handling
+        
     }
 }
