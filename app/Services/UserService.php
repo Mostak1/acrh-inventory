@@ -14,7 +14,7 @@ class UserService
     }
     public function createUser($data)
     {
-        return $this->userRepository->createUser($data);
+        return $this->userRepository->createUserR($data);
     }
 
     public function updateUser(User $user, Request $request)
