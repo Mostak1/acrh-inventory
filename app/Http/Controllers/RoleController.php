@@ -56,6 +56,10 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+      
+        return response()->json([
+            'data'=> $role
+        ]);
         
     }
 

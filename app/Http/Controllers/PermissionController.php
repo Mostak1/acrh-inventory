@@ -8,9 +8,7 @@ use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $dataAll= Permission::get();
@@ -20,17 +18,11 @@ class PermissionController extends Controller
      ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+       
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $data  = [
@@ -47,35 +39,42 @@ class PermissionController extends Controller
      ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Permission $permission)
     {
-        //
+        return response()->json([
+         'data' => $permission,
+        
+     ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Permission $permission)
     {
-        //
+       
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Permission $permission)
     {
-        //
+        $data  = [
+            'permission_id'=>$request->permission_id,
+            'role_id'=>$request->role_id,
+
+        ];
+        $rolep = $permission->update($data);
+        
+        return response()->json([
+         'data' => $rolep,
+         'success' =>'Update Successfully'
+        
+     ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Permission $permission)
     {
-        //
+        if (Permission::destroy($permission->id)) {
+            return response()->json([
+                'info' =>  $permission->id . ' Deleted!',
+               
+            ]);
+        }
     }
 }
