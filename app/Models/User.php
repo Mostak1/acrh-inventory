@@ -19,7 +19,10 @@ class User extends Authenticatable
         'first_name', 'last_name', 'email', 'phone_no', 'user_status', 'is_active', 'password',
     ];
 
-   
+    public function userRoles()
+    {
+        return $this->hasMany(UserRole::class);
+    }
     protected $hidden = [
         'password',
         'remember_token',

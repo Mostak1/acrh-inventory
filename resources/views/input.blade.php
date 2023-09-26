@@ -40,7 +40,7 @@
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
 
-     
+
         <div class="my-3 row ">
 
             <div class="mb-3  col-4">
@@ -87,6 +87,21 @@
             </div>
         </div>
     </div>
+
+    {{--  --}}
+    {{-- <form action="/permission-role-form" method="post">
+        @csrf
+        <label for="role_name">Role Name:</label>
+        <input type="text" name="role_name" required><br>
+
+        <label for="permissions[]">Permissions:</label><br>
+        @foreach ($permissions as $permission)
+            <input type="checkbox" name="permissions[]"
+                value="{{ $permission->id }}">{{ $permission->permission_name }}<br>
+        @endforeach
+
+        <input type="submit" value="Submit">
+    </form> --}}
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -162,7 +177,8 @@
                         // Assuming data.info contains the individual data you want to display
                         console.log(data.data);
                         $('.show').html(
-                            '<h3>Role Name: ' + data.data.role_name + '</h3>' + '<h3> Id: ' + data.data.id + '</h3>'
+                            '<h3>Role Name: ' + data.data.role_name + '</h3>' +
+                            '<h3> Id: ' + data.data.id + '</h3>'
                         );
                     },
                     error: function(error) {
