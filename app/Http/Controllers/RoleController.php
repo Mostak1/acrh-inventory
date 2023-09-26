@@ -56,7 +56,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        
     }
 
     /**
@@ -74,12 +74,14 @@ class RoleController extends Controller
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(Role $role)
     {
-        //
+        if (Role::destroy($role->id)) {
+            return response()->json([
+                'info' =>  $role->id . ' Deleted!',
+               
+            ]);
+        }
     }
 }

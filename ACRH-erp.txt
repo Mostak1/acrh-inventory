@@ -183,3 +183,12 @@ User_Role to Role: Many-to-One relationship. Multiple user roles can be associat
 User_Role to User: Many-to-One relationship. Multiple user roles can be associated with a single user.
 
 Permission to Role: Many-to-Many relationship. A role can have multiple permissions, and a permission can be associated with multiple roles. This relationship is typically implemented using an additional table (not mentioned in your provided schema) often called Role_Permission or similar, which would have two foreign keys, one pointing to role_id in the Role table, and the other pointing to permission_id in the Permission table.
+
+Verb	    URI	                    Action	    Route Name
+GET	        /photos	                index	    photos.index
+GET	        /photos/create	        create	    photos.create
+POST	    /photos	                store	    photos.store
+GET	        /photos/{photo}	        show	    photos.show
+GET	        /photos/{photo}/edit	edit	    photos.edit
+PUT/PATCH	/photos/{photo}	        update	    photos.update
+DELETE	    /photos/{photo}	        destroy	    photos.destroy

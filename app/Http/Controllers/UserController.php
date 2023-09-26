@@ -16,7 +16,6 @@ class UserController extends Controller
     public function index()
     {
        $user= User::get();
-    //    dd($user);
        return response()->json([
         'user' => $user,
        
@@ -47,7 +46,7 @@ class UserController extends Controller
     
     }
 
-    public function show(string $id)
+    public function show($id)
     {
 
     }
@@ -55,12 +54,17 @@ class UserController extends Controller
     {
        
     }
-    public function update(Request $request, string $id)
+    public function update(Request $request,User $user)
     {
         
     }
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        
+        if (User::destroy($user->id)) {
+            return response()->json([
+                'info' =>  $user->id . ' Deleted!',
+               
+            ]);
+        }
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserRoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::resources([
     'users' => UserController::class,
+    'roles'=>RoleController::class,
+    'user_roles' => UserRoleController::class,
    
 ]);
