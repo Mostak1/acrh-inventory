@@ -46,9 +46,11 @@ class UserController extends Controller
     
     }
 
-    public function show($id)
+    public function show(User $user)
     {
-
+        return response()->json([
+            'data'=>$user,
+        ]);
     }
     public function edit(string $id)
     {

@@ -25,7 +25,7 @@ class UserRepository
             'password' => Hash::make($request->password ?? 12341234),
             'phone_no' => $request->phone_no,
             'user_status' => 'Active',
-            'is_active' => false,
+            'is_active' => true,
 
         ];
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('input');
+});
+// Route::middleware('auth')->resources([
+//     'role' => RoleController::class
+// ]);
+Route::middleware('checkRole:2')->group(function () {
+    // Routes that require the specified role
 });

@@ -39,7 +39,16 @@
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
-
+        <div class="">
+            <h1>Login</h1>
+            <form>
+                <label for="username" class="form-label">Username:</label>
+                <input type="text" class="form-control" id="usernamel" name="username"><br><br>
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="passwordl" name="password"><br><br>
+                <input type="submit" class="form-control" value="Login" id="loginButton">
+            </form>
+        </div>
 
         <div class="my-3 row ">
 
@@ -88,20 +97,7 @@
         </div>
     </div>
 
-    {{--  --}}
-    {{-- <form action="/permission-role-form" method="post">
-        @csrf
-        <label for="role_name">Role Name:</label>
-        <input type="text" name="role_name" required><br>
 
-        <label for="permissions[]">Permissions:</label><br>
-        @foreach ($permissions as $permission)
-            <input type="checkbox" name="permissions[]"
-                value="{{ $permission->id }}">{{ $permission->permission_name }}<br>
-        @endforeach
-
-        <input type="submit" value="Submit">
-    </form> --}}
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -183,6 +179,46 @@
                     },
                     error: function(error) {
                         console.error('Error:', error);
+                    }
+                });
+            });
+            // login set using 
+            $("#loginButton").click(function(e) {
+                e.preventDefault();
+                var username = $("#usernamel").val();
+                var password = $("#passwordl").val();
+
+                if (username === "" || password === "") {
+                    alert("Please enter both username and password.");
+                    return;
+                }
+                let csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:8000/api/login",
+                    data: {
+                        email: username,
+                        password: password
+                    },
+                    success: function(response) {
+                        // Assuming the response structure matches what you provided
+                        var user = response.user;
+                        var role = response.role;
+                        var token = response.authorization.token;
+
+                        alert("Login successful!\nUser: " + user + "\nRole: " + role +
+                            "\nToken: " + token);
+
+                        // You can also redirect the user or perform other actions here
+                    },
+                    error: function() {
+                        alert("An error occurred while processing your request.");
                     }
                 });
             });
